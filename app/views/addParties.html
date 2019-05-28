@@ -1,0 +1,343 @@
+<div ng-controller="addPartiesCtrl">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-8 offset-md-2">
+                <alert-directive action="action" close-alerts="closeAlerts"></alert-directive>
+                <div class="card">
+                    <div class="card-header">
+                        Add Reporting Parties
+                    </div>
+                    <div class="card-body">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-from" role="tab" aria-controls="nav-from" aria-selected="true">From Party</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-to" role="tab" aria-controls="nav-to" aria-selected="false">To Party</a>
+                           </div>
+                        </nav>
+
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-from" role="tabpanel" aria-labelledby="nav-from-tab">
+                                <div class="card">
+                                    <div class="card-header">Transaction From </div>
+                                    <div class="card-body">
+                                        <div class="form-group form-row">
+                                            <div class="col">
+                                                <label>MyClient</label><br>
+                                                <label><input type="radio" name="party" value="client" ng-model="party"> </label>
+                                            </div>
+                                            <div class="col">
+                                                <label>Not MyClient</label><br>
+                                                <label><input type="radio" name="party" value="not-client" ng-model="party"> </label>
+                                            </div>
+                                        </div>
+
+                                    <div ng-if="party === 'client'">
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group form-row">
+                                                    <div class="col">
+                                                        <label>Entity</label><br>
+                                                        <label><input type="radio" name="partyGroup" value="showEntity" ng-model="partyGroup"> </label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label>Person</label><br>
+                                                        <label><input type="radio" name="partyGroup" value="showPerson" ng-model="partyGroup"> </label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label>Account</label><br>
+                                                        <label><input type="radio" name="partyGroup" value="showAccount" ng-model="partyGroup"> </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row form-group" >
+                                                    <div class="col" ng-if="partyGroup === 'showEntity'">
+                                                        <label>Entity</label>
+                                                        <select class="form-control" ng-model="myClient.entity">
+                                                            <option ng-repeat="entity in entities" value="{{entity.id}}">{{entity.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col" ng-if="partyGroup === 'showPerson'">
+                                                        <label>Person</label>
+                                                        <select class="form-control" ng-model="myClient.person">
+                                                            <option ng-repeat="person in persons" value="{{person.id}}">{{person.first_name}} {{person.middle_name}}  {{person.last_name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col" ng-if="partyGroup === 'showAccount'">
+                                                        <label>Account</label>
+                                                        <select class="form-control" ng-model="myClient.account">
+                                                            <option ng-repeat="account in accounts" value="{{account.id}}">{{account.institution_name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row form-group">
+                                                    <div class="col">
+
+                                                        <report-directive countries="countries"
+                                                                          funds="fundTypes"
+                                                                          party="report"
+                                                                          report-button-texts="reportButtonTexts.fromMyClient"
+                                                                          post-report="attachFromMyClient"
+                                                                          states="states.from">
+                                                        </report-directive>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                       <div ng-if="party === 'not-client'">
+                                           <div class="card">
+                                               <div class="card-body">
+                                                   <div class="form-group form-row">
+                                                       <div class="col">
+                                                           <label>Entity</label><br>
+                                                           <label><input type="radio" name="partyGroup" value="showEntity" ng-model="partyGroup"> </label>
+                                                       </div>
+                                                       <div class="col">
+                                                           <label>Person</label><br>
+                                                           <label><input type="radio" name="partyGroup" value="showPerson" ng-model="partyGroup"> </label>
+                                                       </div>
+                                                       <div class="col">
+                                                           <label>Account</label><br>
+                                                           <label><input type="radio" name="partyGroup" value="showAccount" ng-model="partyGroup"> </label>
+                                                       </div>
+                                                   </div>
+                                                   <div class="form-row form-group" >
+                                                       <div class="col" ng-if="partyGroup === 'showEntity'">
+                                                           <div>
+
+                                                               <entity-directive countries="countries"
+                                                                                 action="action"
+                                                                                 modalise="modalise"
+                                                                                 button-text="buttonTextNotClient"
+                                                                                 entity="entity"
+                                                                                 attach-entity="attachEntityNotMyClient"
+                                                                                 not-entities="notEntities"
+                                                                                 not-my-client="notMyClient">
+                                                               </entity-directive>
+                                                           </div>
+                                                       </div>
+                                                       <div class="col" ng-if="partyGroup === 'showPerson'">
+                                                           <person-directive countries="countries"
+                                                                             action="action"
+                                                                             modalise="modalise"
+                                                                             button-text="buttonTextNotClient"
+                                                                             person="person"
+                                                                             attach-person="attachPerson"
+                                                                             genders="genders"
+                                                                             not-persons="notPersons"
+                                                                             not-my-client="notMyClient">
+                                                           </person-directive>
+                                                       </div>
+                                                       <div class="col" ng-if="partyGroup === 'showAccount'">
+                                                           <account-directive status-codes="statusCodes"
+                                                                              account-types="accountTypes"
+                                                                              currency-types="currencyTypes"
+                                                                              modalise="modalise"
+                                                                              branches="branches"
+                                                                              button-text="buttonTextNotClient"
+                                                                              attach-account="attachAccountNotMyClient"
+                                                                              account="account"
+                                                                              action="action"
+                                                                              not-accounts="notAccounts"
+                                                                              not-my-client="notMyClient">
+                                                           </account-directive>
+                                                       </div>
+                                                   </div>
+                                                   <div class="form-row form-group">
+                                                       <div class="col">
+                                                           <report-directive
+                                                                   countries="countries"
+                                                                   funds="fundTypes"
+                                                                   party="report"
+                                                                   report-button-texts="reportButtonTexts.from"
+                                                                   post-report="attachFrom"
+                                                                   states="states.from">
+                                                           </report-directive>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+
+                                       </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="tab-pane fade" id="nav-to" role="tabpanel" aria-labelledby="nav-to-tab">
+                                <div class="card">
+                                    <div class="card-header">Transaction To </div>
+                                    <div class="card-body">
+                                        <div class="form-group form-row">
+                                            <div class="col">
+                                                <label>MyClient</label><br>
+                                                <label><input type="radio" name="party" value="client-to" ng-model="party"> </label>
+                                            </div>
+                                            <div class="col">
+                                                <label>Not MyClient</label><br>
+                                                <label><input type="radio" name="party" value="not-client-to" ng-model="party"> </label>
+                                            </div>
+                                        </div>
+
+                                    <div ng-if="party === 'client-to'">
+                                       <div class="card">
+                                           <div class="card-body">
+                                               <div class="form-group form-row">
+                                                   <div class="col">
+                                                       <label>Entity</label><br>
+                                                       <label><input type="radio" name="partyGroup" value="showEntity" ng-model="partyGroup"> </label>
+                                                   </div>
+                                                   <div class="col">
+                                                       <label>Person</label><br>
+                                                       <label><input type="radio" name="partyGroup" value="showPerson" ng-model="partyGroup"> </label>
+                                                   </div>
+                                                   <div class="col">
+                                                       <label>Account</label><br>
+                                                       <label><input type="radio" name="partyGroup" value="showAccount" ng-model="partyGroup"> </label>
+                                                   </div>
+                                               </div>
+                                               <div class="form-row form-group" >
+                                                   <div class="col" ng-if="partyGroup === 'showEntity'">
+                                                       <label>Entity</label>
+                                                       <select class="form-control" ng-model="myClient.entity">
+                                                           <option ng-repeat="entity in entities" value="{{entity.id}}">{{entity.name}}</option>
+                                                       </select>
+                                                   </div>
+                                                   <div class="col" ng-if="partyGroup === 'showPerson'">
+                                                       <label>Person</label>
+                                                       <select class="form-control" ng-model="myClient.person">
+                                                           <option ng-repeat="person in persons" value="{{person.id}}">{{person.first_name}} {{person.middle_name}}  {{person.last_name}}</option>
+                                                       </select>
+                                                   </div>
+                                                   <div class="col" ng-if="partyGroup === 'showAccount'">
+                                                       <label>Account</label>
+                                                       <select class="form-control" ng-model="myClient.account">
+                                                           <option ng-repeat="account in accounts" value="{{account.id}}">{{account.institution_name}}</option>
+                                                       </select>
+                                                   </div>
+                                               </div>
+
+                                               <div class="form-row form-group">
+                                                   <div class="col">
+                                                       <report-directive countries="countries"
+                                                                         funds="fundTypes"
+                                                                         party="report"
+                                                                         report-button-texts="reportButtonTexts.toMyClient"
+                                                                         post-report="attachToMyClient"
+                                                                         states="states.to">
+
+                                                       </report-directive>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                    </div>
+
+                                    <div  ng-if="party === 'not-client-to'">
+                                      <div class="card">
+                                          <div class="card-body">
+                                              <div class="form-group form-row">
+                                                  <div class="col">
+                                                      <label>Entity</label><br>
+                                                      <label><input type="radio" name="partyGroup" value="showEntity" ng-model="partyGroup"> </label>
+                                                  </div>
+                                                  <div class="col">
+                                                      <label>Person</label><br>
+                                                      <label><input type="radio" name="partyGroup" value="showPerson" ng-model="partyGroup"> </label>
+                                                  </div>
+                                                  <div class="col">
+                                                      <label>Account</label><br>
+                                                      <label><input type="radio" name="partyGroup" value="showAccount" ng-model="partyGroup"> </label>
+                                                  </div>
+                                              </div>
+                                              <div class="form-row form-group">
+                                                  <div class="col" ng-if="partyGroup === 'showEntity'">
+                                                      <div>
+                                                          <entity-directive countries="countries"
+                                                                            action="action"
+                                                                            modalise="modalise"
+                                                                            button-text="buttonTextNotClient"
+                                                                            entity="entity"
+                                                                            attach-entity="attachEntityNotMyClient"
+                                                                            not-entities="notEntities"
+                                                                            not-my-client="notMyClient">
+                                                          </entity-directive>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col" ng-if="partyGroup === 'showPerson'">
+                                                      <person-directive countries="countries"
+                                                                        action="action"
+                                                                        modalise="modalise"
+                                                                        button-text="buttonTextNotClient"
+                                                                        person="person"
+                                                                        attach-person="attachPerson"
+                                                                        genders="genders"
+                                                                        not-persons="notPersons"
+                                                                        not-my-client="notMyClient">
+                                                      </person-directive>
+                                                  </div>
+                                                  <div class="col" ng-if="partyGroup === 'showAccount'">
+                                                      <account-directive status-codes="statusCodes"
+                                                                         account-types="accountTypes"
+                                                                         currency-types="currencyTypes"
+                                                                         modalise="modalise"
+                                                                         branches="branches"
+                                                                         button-text="buttonTextNotClient"
+                                                                         attach-account="attachAccountNotMyClient"
+                                                                         account="account"
+                                                                         action="action"
+                                                                         not-accounts="notAccounts"
+                                                                         not-my-client="notMyClient">
+                                                      </account-directive>
+                                                  </div>
+
+                                              </div>
+                                              <div class="form-row form-group">
+                                                  <div class="col">
+                                                      <report-directive countries="countries"
+                                                                        funds="fundTypes"
+                                                                        party="report"
+                                                                        report-button-texts="reportButtonTexts.from"
+                                                                        post-report="attachToClient"
+                                                                        states="states.to">
+                                                      </report-directive>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-group form-row">
+                            <div class="col d-flex justify-content-center">
+                                <button class="btn btn-warning" type="button" ng-click="reRun()">Add Transaction <i class="fas fa-sync-alt"></i> </button>
+                            </div>
+                            <div class="col d-flex justify-content-center">
+                                <button class="btn btn-success" type="button" ng-click="complete()">Complete Report <i class="fas fa-paper-plane"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <foreign-currency-directive submit="submitForeignCurrency" foreign-currency="foreignCurrency" currency-types="currencyTypes"></foreign-currency-directive>
+    </div>
+
+
+
+</div>

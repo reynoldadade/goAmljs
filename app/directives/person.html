@@ -1,0 +1,210 @@
+<label>Person</label>
+<div class="row">
+        <div class="col">
+            <form>
+            <select class="form-control" ng-model="notMyClient.person" >
+                <option ng-repeat="noPerson in notPersons" value="{{noPerson.id}}">{{noPerson.first_name}} {{noPerson.middle_name}} {{noPerson.last_name}}</option>
+            </select>
+            </form>
+        </div>
+
+
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personModal">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="personModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="personModalTitle">{{modalise.person.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form name="reportPersonForm">
+                <div class="modal-body">
+                    <alert-directive close-alerts="closeAlerts" action="action"></alert-directive>
+                    <div class="form-row form-group">
+                        <div class="col">
+                            <label>Title</label>
+                            <input class="form-control" ng-model="person.title" placeholder="Mr/Dr./Prof">
+
+
+                        </div>
+                        <div class="col">
+                            <label>First Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.first_name" required>
+                        </div>
+
+                        <div class="col">
+                            <label>Last Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.last_name">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" ng-model="person.middle_name">
+                        </div>
+                        <div class="col">
+                            <label>Prefix</label>
+                            <input type="text" class="form-control" ng-model="person.prefix">
+                        </div>
+                        <div class="col">
+                            <label>Gender</label>
+                            <select class="form-control" ng-model="person.gender">
+                                <option ng-repeat="gender in genders" value="{{gender.lk_code}}">{{gender.lk_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Birth Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" ng-model="person.birthdate" required>
+                        </div>
+                        <div class="col">
+                            <label>Birth Place</label>
+                            <input type="text" class="form-control" ng-model="person.birth_place">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Mothers Name </label>
+                            <input type="text" class="form-control" ng-model="person.mothers_name" >
+                        </div>
+                        <div class="col">
+                            <label>Alias</label>
+                            <input type="text" class="form-control" ng-model="person.alias">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>SSN <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="person.ssn" required>
+                        </div>
+                        <div class="col">
+                            <label>Passport Number</label>
+                            <input type="text" class="form-control" ng-model="person.passport_number">
+                        </div>
+                        <div class="col">
+                            <label>Passport Country</label>
+                            <select class="form-control" ng-model="person.passport_country">
+                                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+
+                        <div class="col">
+                            <label>Nationality 1 <span class="text-danger">*</span> </label>
+                            <select class="form-control" ng-model="person.nationality1" required>
+                                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Nationality 2</label>
+                            <select class="form-control" ng-model="person.nationality2" required>
+                                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Nationality 3</label>
+                            <select class="form-control" ng-model="person.nationality3" required>
+                                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+
+                        <div class="col">
+                            <label>ID Number <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.id_number">
+                        </div>
+                        <div class="col">
+                            <label>Residence <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.residence">
+                        </div>
+
+                        <div class="col">
+                            <label>Email</label>
+                            <input type="email" class="form-control" ng-model="person.email">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+
+                        <div class="col">
+                            <label>Employee Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.employee_name">
+                        </div>
+                        <div class="col">
+                            <label>Employee Address <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.employee_address_id">
+                        </div>
+
+                        <div class="col">
+                            <label>Employee Phone Id</label>
+                            <input type="text" class="form-control" ng-model="person.employee_phone_id">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+
+                        <div class="col">
+                            <label>Tax Number <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.tax_number">
+                        </div>
+                        <div class="col">
+                            <label>Tax Registration Number <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" ng-model="person.tax_reg_number">
+                        </div>
+
+                        <div class="col">
+                            <label>Source of Wealth</label>
+                            <input type="text" class="form-control" ng-model="person.source_of_wealth">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Occupation </label>
+                            <input type="text" class="form-control" ng-model="person.occupation">
+                        </div>
+                        <div class="col">
+                            <label>Deceased? </label><br>
+                             <label><input type="radio"  class="form-control"   ng-model="person.deceased" name="deceased" ng-value="true">Yes</label>
+                             <label><input type="radio"  class="form-control"   ng-model="person.deceased" name="deceased" ng-value="false">No</label>
+                            </div>
+                        <div class="col">
+                            <label>Deceased Date </label>
+                            <input type="date" class="form-control" ng-model="person.deceased_date">
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col-6">
+                            <label>Comments </label>
+                            <textarea  class="form-control" ng-model="person.comments"></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="attachPerson()" ng-disabled="reportPersonForm.$invalid">Save changes
+                        <i class="fas fa-circle-notch fa-spin" ng-if="modalise.pending"></i>
+                        <i class="fas fa-check"  ng-if="modalise.sent"></i>
+                        <i class="fas fa-exclamation-triangle" ng-if="modalise.failed"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

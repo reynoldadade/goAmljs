@@ -1,0 +1,77 @@
+<div ng-controller = "registerCtrl">
+
+
+    <div class="row">
+        <div class="container">
+            <alert-directive close-alerts="closeAlerts" action="action"></alert-directive>
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        Register
+                    </div>
+                    <div class="card-body">
+                        <form ng-submit="register()" name="registerForm">
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>First Name</label>
+                                    <input type="text" ng-model="register.firstName" placeholder="First Name" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label>Last Name</label>
+                                    <input type="text" ng-model="register.lastName" placeholder="Last Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Username</label>
+                                    <input type="text" ng-model="register.userName" placeholder="This name will be used for login" class="form-control" minlength="4">
+                                </div>
+                                <div class="col">
+                                    <label>Branch</label>
+                                    <select ng-model="register.branch" class="form-control">
+                                        <option ng-repeat="branch in branches" value="{{branch.entitybranch_code}}">{{branch.entitybranch_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Password</label>
+                                    <input type="password" ng-model="register.password" placeholder="Password" class="form-control" required name="register.password" minlength="6">
+                                </div>
+                                <div class="col">
+                                    <label>Confirm Password</label>
+                                    <input type="password" ng-model="register.confirmPassword" placeholder="Confirm Password" class="form-control" required ng-pattern="register.password" name="confirmPassword" minlength="6">
+                                </div>
+                            </div>
+                            <p class="text-danger text-center" ng-show="registerForm.confirmPassword.$error.pattern">Passwords do not match</p>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Email</label>
+                                    <input type="email" ng-model="register.email" placeholder="someone@something.com" class="form-control" required>
+                                </div>
+                                <div class="col">
+                                    <label>Date of Birth</label>
+                                    <input type="date" ng-model="register.birthDate" placeholder="Confirm Password" class="form-control" required>
+                                </div>
+
+                            </div>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Phone Number</label>
+                                    <input type="tel" ng-model="register.phoneNumber" placeholder="02XXXXXXXX" class="form-control" maxlength="10" minlength="10" name="register.phoneNumber" required>
+                                </div>
+                                <div class="col">
+                                    <label>Confirm Phone Number</label>
+                                    <input type="tel" ng-model="register.confirmPhoneNumber" placeholder="02XXXXXXXX" class="form-control" maxlength="10" minlength="10" ng-pattern="register.phoneNumber" required name="confirmPhoneNumber">
+                                </div>
+                            </div>
+                            <p class="text-danger text-center" ng-show="registerForm.confirmPhoneNumber.$error.pattern">Phone Numbers do not match</p>
+
+                            <button class="btn btn-primary btn-block" type="submit" ng-disabled="registerForm.$invalid">Register <i class="fas fa-circle-notch fa-spin" ng-if="spin"></i> </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

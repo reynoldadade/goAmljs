@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <a class="navbar-brand" href="#"><img class="img-responsive" src="assets/images/download.jpg" width="50" height="48"> <strong class="text-warning">goAML</strong></a>
+
+   <!--<div ng-if="userData.login">-->
+
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" ng-if="userData.login">
+           <span class="navbar-toggler-icon"></span>
+       </button>
+
+       <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-if="userData.login">
+           <ul class="navbar-nav mr-auto">
+               <li class="nav-item dropdown ml-3">
+                   <a class="nav-link dropdown-toggle text-warning" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       File
+                   </a>
+                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <a ng-href="#!/newReport" class="dropdown-item"><i class="fas fa-file"></i> New Report</a>
+                       <a ng-href="#!/uploadCoreFiles" class="dropdown-item"><i class="fas fa-arrow-up"></i> Upload Banking Core Files</a>
+                       <a ng-href="#!/exportXMLFile" class="dropdown-item"><i class="fas fa-rocket"></i> Export XML File</a>
+                   </div>
+               </li>
+               <li class="nav-item dropdown ml-3">
+                   <a class="nav-link dropdown-toggle text-warning"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       View
+                   </a>
+                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <a ng-href="#!/manageDraftReports" class="dropdown-item"><i class="fas fa-user-tie"></i> Manage Draft Report</a>
+                       <a ng-href="#!/manageUnpublishedReports" class="dropdown-item"><i class="fas fa-calculator"></i> Unpublished Reports</a>
+                       <a ng-href="#!/exportedReports" class="dropdown-item"><i class="fas fa-paper-plane"></i> Exported Reports</a>
+                   </div>
+
+               </li>
+               <li class="nav-item dropdown ml-3">
+                   <a class="nav-link dropdown-toggle text-warning"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Authorise
+                   </a>
+                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <a ng-href="#!/manageUnauthorizedReports" class="dropdown-item"><i class="fas fa-ban"></i> Unauthorized Reports</a>
+                       <a ng-href="#!/manageRejectedReports" class="dropdown-item"><i class="fas fa-lock"></i> Rejected Reports</a>
+                   </div>
+
+               </li>
+               <li class="nav-item dropdown ml-3">
+                   <a class="nav-link dropdown-toggle text-warning"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Setup
+                   </a>
+                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                       <a ng-href="#!/register" class="dropdown-item"><i class="fas fa-users"></i> Add Users</a>
+                       <a ng-href="#!/branches" class="dropdown-item"><i class="fas fa-umbrella"></i> Branches</a>
+                       <a ng-href="" class="dropdown-item"><i class="fas fa-tag"></i> Roles</a>
+                   </div>
+
+               </li>
+           </ul>
+
+           <div class="navbar-nav">
+               <a ng-href="#!/logout" class="nav-link text-danger"><i class="fas fa-power-off"></i>  Logout</a>
+           </div>
+
+
+
+       </div>
+   <!--</div>-->
+</nav>

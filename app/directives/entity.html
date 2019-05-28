@@ -1,0 +1,141 @@
+<label>Entity</label>
+<div class="row">
+    <div class="col">
+        <form>
+            <select class="form-control" ng-model="notMyClient.entity">
+                <option ng-repeat="noEntity in notEntities" value="{{noEntity.id}}">{{noEntity.name}}</option>
+            </select>
+        </form>
+        </div>
+    <div class="col"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#entityModal">
+        <i class="fas fa-plus"></i>
+    </button></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="entityModal" tabindex="-1" role="dialog" aria-labelledby="entityModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="entityModalTitle">{{modalise.entity.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form name="entityForm">
+            <div class="modal-body">
+                <alert-directive close-alerts="closeAlerts" action="action"></alert-directive>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Entity Name <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control" required ng-model="entity.name" >
+                    </div>
+                    <div class="col">
+                        <label>Commercial Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" ng-model="entity.commercial_name" required>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Incorporation Legal Form<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control"  ng-model="entity.incorporation_legal_form" required>
+                    </div>
+                    <div class="col">
+                        <label>Incorporation Number<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" ng-model="entity.fincorporation_number" required>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Business Description<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control"  ng-model="entity.business" placeholder="description" required>
+                    </div>
+                    <div class="col">
+                        <label>Phone<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" ng-model="entity.phone" required>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Address<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control"  ng-model="entity.address" placeholder="Address" required>
+                    </div>
+                    <div class="col">
+                        <label>Email</label>
+                        <input type="email" class="form-control" ng-model="entity.email">
+                    </div>
+                    <div class="col">
+                        <label>URL</label>
+                        <input type="email" class="form-control" ng-model="entity.url">
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Incorporation State<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control"  ng-model="entity.incorporation_state" placeholder="Incorporation State" required>
+                    </div>
+                    <div class="col">
+                        <label>Incorporation Country Code<span class="text-danger">*</span></label>
+                        <select  class="form-control" ng-model="entity.incorporation_country_code" required>
+                            <option ng-repeat="country in countries" value="{{country.lk_code}}">
+                                {{country.lk_name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Director Id <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control"  ng-model="entity.director_id" placeholder="Director Id" required>
+                    </div>
+                    <div class="col">
+                        <label>Incorporation Date</label>
+                        <input type="date" class="form-control" ng-model="entity.incorporation_date">
+                    </div>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Business Closed?</label><br>
+                        <label><input type="radio"  class="form-control"   ng-model="entity.business_closed" name="business_closed" ng-value="true">Yes</label>
+                        <label><input type="radio"  class="form-control"   ng-model="entity.business_closed" name="business_closed" ng-value="false">No </label>
+
+                    </div>
+                    <div class="col">
+                        <label>Date Business Closed</label>
+                        <input type="date" class="form-control" ng-model="entity.date_business_closed">
+                    </div>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label>Tax Number</label>
+                        <input type="text" class="form-control"  ng-model="entity.tax_number" placeholder="tax number">
+                    </div>
+                    <div class="col">
+                        <label>Incorporation Date</label>
+                        <input type="date" class="form-control" ng-model="entity.tax_registration_number">
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-6">
+                        <label>Comments</label>
+                        <textarea class="form-control"  ng-model="entity.comments" placeholder="description"></textarea>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" ng-click="attachEntity()" ng-disabled="entityForm.$invalid">Save changes
+                    <i class="fas fa-circle-notch fa-spin" ng-if="modalise.pending"></i>
+                    <i class="fas fa-check"  ng-if="modalise.sent"></i>
+                    <i class="fas fa-exclamation-triangle" ng-if="modalise.failed"></i>
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

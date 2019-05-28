@@ -1,0 +1,98 @@
+<div ng-controller="reportTransactionsCtrl">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-8 offset-md-2">
+                <alert-directive action="action" close-alerts="closeAlerts"></alert-directive>
+                <div class="card">
+                  <form name="reportTransactionForm">
+                      <div class="card-body">
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="transactionNumber">Transaction Number <span class="text-danger">*</span></label>
+                                  <input type="text" id="transactionNumber" ng-model="transaction.transactionnumber" class="form-control" placeholder="Transaction Number" required>
+                              </div>
+                              <div class="col">
+                                  <label for="internal_ref_number">Internal Reference Number <span class="text-danger">*</span></label>
+                                  <input type="text" id="internal_ref_number" ng-model="transaction.internal_ref_number" class="form-control" placeholder="Internal Reference Number">
+                              </div>
+                          </div>
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="transaction_location">Transaction Location<span class="text-danger">*</span></label>
+                                  <select  id="transaction_location" ng-model="transaction.transaction_location" class="form-control"  required>
+                                      <option ng-repeat="location in locations" value="{{location.address}}">{{location.address}}</option>
+                                  </select>
+
+                              </div>
+                              <div class="col">
+                                  <label for="transaction_description">Transaction Description <span class="text-danger">*</span></label>
+                                  <textarea id="transaction_description"  class="form-control" placeholder="Description" required ng-model="transaction.transaction_description"></textarea>
+                              </div>
+                          </div>
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="date_of_transaction">Date of Transaction<span class="text-danger">*</span></label>
+                                  <input type="date" id="date_of_transaction" ng-model="transaction.date_transaction" class="form-control" required>
+                              </div>
+                              <div class="col">
+                                  <label for="teller">Teller</label>
+                                  <input id="teller"  class="form-control" placeholder="Teller Name"  ng-model="transaction.teller">
+                              </div>
+                          </div>
+
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="authorised_by">Authorised By</label>
+                                  <input type="text" placeholder="Authorised By" ng-model="transaction.authorized" class="form-control" id="authorised_by">
+                              </div>
+                              <div class="col">
+                                  <label >Late Deposit? </label><br>
+                                  <label><input type="radio"  class="form-control"   ng-model="transaction.late_deposit" name="late_deposit" ng-value="true">Yes</label>
+                                  <label><input type="radio"  class="form-control"   ng-model="transaction.late_deposit" name="late_deposit" ng-value="false">No </label>
+
+                              </div>
+                          </div>
+
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="local_amount">Local Amount</label>
+                                  <input type="text" placeholder="Local Amount" ng-model="transaction.amount_local" class="form-control" id="local_amount" required>
+                              </div>
+                              <div class="col">
+                                  <label for="transmode_code">Transmode Code <span class="text-danger">*</span></label>
+                                  <select class="form-control" id="transmode_code" required ng-model="transaction.transmode_code">
+                                      <option ng-repeat="transmodeCode in transmodeCodes" value="{{transmodeCode.lk_code}}">{{transmodeCode.lk_name}}</option>
+                                  </select>
+
+
+                              </div>
+                          </div>
+                          <div class="form-row form-group">
+                              <div class="col">
+                                  <label for="transmode_comment">Comments</label>
+                                  <textarea  placeholder="Local Amount" ng-model="transaction.transmode_comment" class="form-control" id="transmode_comment"></textarea>
+                              </div>
+                              <div class="col">
+                                  <label >Is Multiparty? </label><br>
+                                  <label><input type="radio"  class="form-control"   ng-model="transaction.ismultiparty" name="is_multiparty" ng-value="true">Yes</label>
+                                  <label><input type="radio"  class="form-control"   ng-model="transaction.ismultiparty" name="is_multiparty" ng-value="false">No </label>
+
+                              </div>
+
+                          </div>
+
+                      </div>
+                      <div class="card-footer">
+                          <div class="row">
+                              <div class="col">
+                                  <button class="btn btn-block btn-success" ng-click="addTransactionAndContinue()" ng-disabled="reportTransactionForm.$invalid">Save and Continue <i class="fas fa-arrow-right"></i> </button>
+                              </div>
+
+                          </div>
+                      </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

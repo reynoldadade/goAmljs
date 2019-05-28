@@ -1,0 +1,156 @@
+<label>Account</label>
+<div class="row">
+
+        <div class="col">
+           <form>
+               <select class="form-control" ng-model="notMyClient.account">
+                   <option ng-repeat="noAccount in notAccounts" value="{{noAccount.id}}">{{noAccount.institution_name}}</option>
+               </select>
+           </form>
+        </div>
+
+    <div class="col">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accountModal">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountModalTitle">{{modalise.account.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <alert-directive action="action" close-alerts="closeAlerts"></alert-directive>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Institution Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" placeholder="Name of Institution" ng-model="account.institution_name" required>
+                        </div>
+                        <div class="col">
+                            <label>Institution Code <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Institution Code" ng-model="account.institution_code">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Swift</label>
+                            <input type="text" class="form-control" placeholder="Name of Institution" ng-model="account.swift">
+                        </div>
+                        <div class="col">
+                            <label>Non Bank Institution</label><br>
+                            <label><input type="radio"  class="form-control"   ng-model="account.non_bank_institution" name="non_bank" ng-value="true">Yes</label>
+                            <label><input type="radio"  class="form-control"   ng-model="account.non_bank_institution" name="non_bank" ng-value="false">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Branch</label>
+                            <select  class="form-control"  ng-model="account.branch">
+                                <option ng-repeat="branch in branches" value="{{branch.entitybranch_code}}">{{branch.entitybranch_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Account Number</label>
+                            <input type="text" class="form-control" placeholder="Account Number" ng-model="account.account">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Currency Code</label>
+                            <select  class="form-control"  ng-model="account.currency_code">
+                                <option ng-repeat="currencyType in currencyTypes" value="{{currencyType.lk_code}}">{{currencyType.lk_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Entity</label>
+                            <input type="text" class="form-control" placeholder="Name of Institution" ng-model="account.t_entity">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>IBAN</label>
+                            <input type="text" class="form-control" placeholder="IBAN" ng-model="account.iban">
+                        </div>
+                        <div class="col">
+                            <label>Client Number</label>
+                            <input type="text" class="form-control" placeholder="Number" ng-model="account.client_number">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Account Type</label>
+                            <select  class="form-control"  ng-model="account.person_account_type">
+                                <option ng-repeat="accountType in accountTypes" value="{{accountType.lk_code}}">{{accountType.lk_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Balance</label>
+                            <input type="text" class="form-control" placeholder="Account Balance" ng-model="account.balance">
+                        </div>
+
+                        <div class="col">
+                            <label>Balance Date</label>
+                            <input type="date" class="form-control" placeholder="Date balance was recorded" ng-model="account.date_balance">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Account Opening Date</label>
+                            <input type="date" class="form-control"  ng-model="account.opened">
+                        </div>
+                        <div class="col">
+                            <label>Account Closing Date</label>
+                            <input type="date" class="form-control"  ng-model="account.closed">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label>Beneficiary</label>
+                            <input type="text" class="form-control" placeholder="beneficiary name" ng-model="account.beneficiary">
+                        </div>
+                        <div class="col">
+                            <label>Beneficiary Comments</label>
+                            <textarea  class="form-control" placeholder="Beneficiary Comments" ng-model="account.beneficiary_comment"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label> Comments</label>
+                            <textarea  class="form-control" placeholder="Comments" ng-model="account.comments"></textarea>
+                        </div>
+                        <div class="col">
+                            <label>Status Code</label>
+                            <select class="form-control"  ng-model="account.status_code">
+                                <option ng-repeat="statusCode in statusCodes" value="{{statusCode.lk_code}}">{{statusCode.lk_name}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="attachAccount()">Save changes
+                        <i class="fas fa-circle-notch fa-spin" ng-if="modalise.pending"></i>
+                        <i class="fas fa-check"  ng-if="modalise.sent"></i>
+                        <i class="fas fa-exclamation-triangle" ng-if="modalise.failed"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

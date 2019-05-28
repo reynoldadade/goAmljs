@@ -1,0 +1,72 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addressModalLabel">{{modalise.address.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <alert-directive close-alerts="closeAlert" action="action"></alert-directive>
+                    <div class="form-row form-group">
+                        <div class="col">
+                            <label for="addressType">Address Type</label>
+                            <select id="addressType" ng-model="addresser.address_type" required class="form-control">
+                                <option ng-repeat="contactType in contactTypes" value = {{contactType.lk_code}}>{{contactType.lk_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" ng-model="addresser.address">
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col">
+                            <label for="town">Town</label>
+                            <input id="town" type="text" class="form-control" ng-model="addresser.town">
+                        </div>
+                        <div class="col">
+                            <label for="city">City</label>
+                            <input id="city" type="text" class="form-control" ng-model="addresser.city" required>
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col">
+                            <label for="zip">Zip</label>
+                            <input id="zip" type="text" class="form-control" ng-model="addresser.zip">
+                        </div>
+                        <div class="col">
+                            <label for="country_code">Country Code</label>
+                            <select id="country_code" class="form-control" ng-model="addresser.country_code" required>
+                                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col">
+                            <label for="state">State</label>
+                            <input id="state" type="text" class="form-control" ng-model="addresser.state">
+                        </div>
+                        <div class="col">
+                            <label for="comments">Comments</label>
+                            <textarea id="comments"  class="form-control" ng-model="addresser.comments">
+
+                            </textarea>
+                        </div>
+                    </div>
+              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-click="saveNewLocation()">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

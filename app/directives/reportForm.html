@@ -1,0 +1,36 @@
+<alert-directive action="action" close-alerts="closeAlerts"></alert-directive>
+<form>
+    <div class="form-row form-group">
+        <div class="col">
+            <label>Funds Code </label>
+            <select class="form-control" ng-model="party.funds_code">
+                <option ng-repeat="fund in funds" value="{{fund.lk_code}}">{{fund.lk_name}}</option>
+            </select>
+        </div>
+        <div class="col">
+            <label>Country</label>
+            <select class="form-control" ng-model="party.country">
+                <option ng-repeat="country in countries" value="{{country.lk_code}}">{{country.lk_name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row form-group">
+        <div class="col">
+            <label>Foreign Currency</label>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#foreignCurencyModal">
+                Add
+            </button>
+        </div>
+        <div class="col">
+            <label>Comments</label>
+            <textarea ng-model="party.funds_comments" class="form-control"></textarea>
+        </div>
+    </div>
+
+            <button class="btn btn-block btn-primary" type="submit" ng-click="postReport()">{{reportButtonTexts}}
+                <i class="fas fa-circle-notch fa-spin" ng-if="states.pending"></i>
+                <i class="fas fa-check"  ng-if="states.sent"></i>
+                <i class="fas fa-exclamation-triangle" ng-if="states.failed"></i></button>
+
+</form>

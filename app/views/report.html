@@ -1,0 +1,127 @@
+<div ng-controller="reportCtrl">
+
+    <div class="container">
+
+        <div class="col-md-10 offset-md-1 col-sm-12 offset-sm-0">
+            <alert-directive action="action" close-alerts="closeAlerts"></alert-directive>
+            <div class="card">
+                <div class="card-header">
+                    New Report
+                </div>
+                <div class="card-body">
+                    <form name="newReport">
+                        <div class="form-row form-group">
+                            <div class="col">
+                                <label for="rentity_id">
+                                    Reporting Entity Id <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="rentity_id" class="form-control" placeholder="Reporting Entity Id" ng-model="report.rentity_id" required min="1">
+                            </div>
+                            <div class="col">
+                                <label for="rentity_branch">
+                                    Reporting Entity Branch <span class="text-danger">*</span>
+                                </label>
+                                <select  id="rentity_branch" class="form-control"  ng-model="report.rentity_branch" required>
+                                    <option ng-repeat="branch in branches" value="{{branch.entitybranch_code}}">{{branch.entitybranch_name}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-row form-group">
+
+                            <div class="col">
+                                <label for="report_code">
+                                    Report Type <span class="text-danger">*</span>
+                                </label>
+                                <select  id="report_code" class="form-control"  ng-model="report.report_code" required>
+                                        <option ng-repeat="reportType in reportTypes" value="{{reportType.lk_code}}">{{reportType.lk_name}}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="entity_reference">
+                                    Entity Reference <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="entity_reference" class="form-control" placeholder="Entity reference" ng-model="report.entity_reference" required>
+                            </div>
+                        </div>
+                        <div class="form-row form-group">
+                            <div class="col">
+                                <label for="submission_code">
+                                    Submission Code <span class="text-danger">*</span>
+                                </label>
+                                <select  id="submission_code" class="form-control"  ng-model="report.submission_code" required>
+                                    <option ng-repeat="submissionType in submissionTypes" value="{{submissionType.lk_code}}"> {{submissionType.lk_name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <label for="currency_code_local">
+                                    Local Currency Code <span class="text-danger">*</span>
+                                </label>
+                                <select id="currency_code_local" class="form-control"  ng-model="report.currency_code_local" required>
+                                    <option ng-repeat="currencyType in currencyTypes" value="{{currencyType.lk_code}}">{{currencyType.lk_name}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row form-group">
+                            <div class="col">
+                                <label for="reason">
+                                    Reason <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="reason" class="form-control" ng-model="report.reason"  placeholder="Reporting Reason" required>
+                            </div>
+                            <div class="col">
+                                <label for="action">
+                                    Action <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="action" class="form-control" placeholder="Action" ng-model="report.action" required>
+                            </div>
+                        </div>
+                        <div class="form-row form-group">
+                            <div class="col">
+                                <label for="fic_ref_number">
+                                    FIC Reference Number
+                                </label>
+                                <input type="text" id="fic_ref_number" class="form-control" ng-model="report.fic_ref_number"  placeholder="FIC Reference Number">
+                            </div>
+                            <div class="col">
+                                <label for="location">
+                                    Location <span class="text-danger">*</span>
+                                </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <select  id="location" class="form-control"  ng-model="report.location" required>
+                                            <option ng-repeat="location in locations" value="{{location.id}}">{{location.address}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal">
+                                            ADD NEW LOCATION <i class="fas fa-plus"></i>
+                                        </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-success btn-block" ng-click="createNewReport()" type="submit" ng-disabled="newReport.$invalid">SAVE <i class="fas fa-plus"></i> </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-success btn-block" ng-click="createNewReportAndContinue()" type="submit" ng-disabled="newReport.$invalid">SAVE AND CONTINUE <i class="fas fa-arrow-right"></i> </button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+            <address-directive contact-types="contactTypes"
+                               save-new-location="saveNewLocation"
+                               modalise="modalise" action="action"
+                               countries="countries"
+                               addresser="t_address"></address-directive>
+
+        </div>
+</div>
+</div>

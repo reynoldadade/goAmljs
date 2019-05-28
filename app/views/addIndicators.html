@@ -1,0 +1,47 @@
+<div ng-controller="addIndicatorsCtrl">
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <alert-directive close-alerts="closeAlerts" action="action"></alert-directive>
+            <div class="card">
+                <div class="card-header">ADD REPORT INDICATORS
+                    <div class="float-right"><input type="text" class="form-control" ng-model="search" placeholder="search...."></div>
+                </div>
+
+
+                <div class="card-body">
+                    <div style="overflow:auto; height: 500px;">
+                    <table class="table table-hover table-sm table-bordered table-striped table-dark">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Indicator</th>
+                            <th>Selected</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="indicatorType in indicatorTypes|filter:search">
+                            <td>{{indicatorType.lk_code}}</td>
+                            <td>{{indicatorType.lk_name}}</td>
+                            <td><input type="checkbox" class="form-control" ng-click="selectedIndicator(indicatorType);setIndicators()"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-block btn-primary" type="button" ng-click="addReportIndicator()">Save and Continue later</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-block btn-success" ng-click="addReportIndicatorAndContinue()">Save and Continue <i class="fas fa-arrow-right"></i> </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

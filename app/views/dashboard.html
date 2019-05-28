@@ -1,0 +1,54 @@
+<div ng-controller="dashboardCtrl">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Welcome</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="card-title"><i class="far fa-user"></i> DRAFT REPORTS</div>
+                                    <div class="card-text">{{numbers.drafts}}</div>
+                                    <a class="btn btn-primary btn-block text-white mt-4" ng-href="#!/manageDraftReports" role="button">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="card-title"><i class="far fa-thumbs-down"></i> UNAUTHORIZED REPORTS</div>
+                                    <div class="card-text">{{numbers.unauthorized}}</div>
+                                    <a class="btn btn-primary btn-block text-white mt-4" ng-href="#!/manageUnauthorizedReports" role="button">View</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="card-title"><i class="fas fa-ban"></i> REJECTED REPORTS</div>
+                                    <div class="card-text">{{numbers.rejected}}</div>
+                                    <a class="btn btn-primary btn-block text-white mt-4" ng-href="#!/manageRejectedReports" role="button">View</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="card-title"><i class="far fa-hourglass"></i> UNPUBLISHED REPORTS</div>
+                                    <div class="card-text">{{numbers.unpublished}}</div>
+                                    <a class="btn btn-primary btn-block text-white mt-4" ng-href="#!/manageUnpublishedReports" role="button">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
